@@ -12,6 +12,12 @@
 		214CDA871BC036D800B55930 /* connect.h in Sources */ = {isa = PBXBuildFile; fileRef = 2106AC801BC0315900BCC5D4 /* connect.h */; };
 		214CDA881BC036D800B55930 /* connect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2106AC811BC0316500BCC5D4 /* connect.cpp */; };
 		21B9448A1BC124B200A223EA /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B944891BC124B200A223EA /* libuv.a */; };
+		21B9448B1BC12B2100A223EA /* pasv.h in Sources */ = {isa = PBXBuildFile; fileRef = 21A83BE81BC0839E00F15D2A /* pasv.h */; };
+		21B9448C1BC12B2100A223EA /* pasv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A83BE91BC083AB00F15D2A /* pasv.cpp */; };
+		21B9448D1BC12B2100A223EA /* user.h in Sources */ = {isa = PBXBuildFile; fileRef = 21A83BEA1BC1241A00F15D2A /* user.h */; };
+		21B9448E1BC12B2100A223EA /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A83BEB1BC1242A00F15D2A /* user.cpp */; };
+		21B944911BC1641F00A223EA /* clientPi.h in Sources */ = {isa = PBXBuildFile; fileRef = 21B9448F1BC1638500A223EA /* clientPi.h */; };
+		21B944921BC1641F00A223EA /* clientPi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B944901BC1639200A223EA /* clientPi.cpp */; };
 		21C51AF21BC023E0007D37C1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C51AF11BC023E0007D37C1 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -35,8 +41,10 @@
 		21A83BE81BC0839E00F15D2A /* pasv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pasv.h; sourceTree = "<group>"; };
 		21A83BE91BC083AB00F15D2A /* pasv.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pasv.cpp; sourceTree = "<group>"; };
 		21A83BEA1BC1241A00F15D2A /* user.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
-		21A83BEB1BC1242A00F15D2A /* user.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = user.hpp; sourceTree = "<group>"; };
+		21A83BEB1BC1242A00F15D2A /* user.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
 		21B944891BC124B200A223EA /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = libuv/libuv.a; sourceTree = SOURCE_ROOT; };
+		21B9448F1BC1638500A223EA /* clientPi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clientPi.h; sourceTree = "<group>"; };
+		21B944901BC1639200A223EA /* clientPi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = clientPi.cpp; sourceTree = "<group>"; };
 		21C51AEE1BC023E0007D37C1 /* libuvftp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libuvftp; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C51AF11BC023E0007D37C1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,7 +89,9 @@
 				21A83BE81BC0839E00F15D2A /* pasv.h */,
 				21A83BE91BC083AB00F15D2A /* pasv.cpp */,
 				21A83BEA1BC1241A00F15D2A /* user.h */,
-				21A83BEB1BC1242A00F15D2A /* user.hpp */,
+				21A83BEB1BC1242A00F15D2A /* user.cpp */,
+				21B9448F1BC1638500A223EA /* clientPi.h */,
+				21B944901BC1639200A223EA /* clientPi.cpp */,
 			);
 			path = libuvftp;
 			sourceTree = "<group>";
@@ -142,6 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B944911BC1641F00A223EA /* clientPi.h in Sources */,
+				21B944921BC1641F00A223EA /* clientPi.cpp in Sources */,
+				21B9448B1BC12B2100A223EA /* pasv.h in Sources */,
+				21B9448C1BC12B2100A223EA /* pasv.cpp in Sources */,
+				21B9448D1BC12B2100A223EA /* user.h in Sources */,
+				21B9448E1BC12B2100A223EA /* user.cpp in Sources */,
 				214CDA851BC036D800B55930 /* ftpCommand.h in Sources */,
 				214CDA861BC036D800B55930 /* ftpCommand.cpp in Sources */,
 				214CDA871BC036D800B55930 /* connect.h in Sources */,

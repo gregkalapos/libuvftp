@@ -25,7 +25,7 @@ private:
     
 public:
     //connect(): ip(_ip), port(_port){};
-    static void startConnect(std::string _ip, int _port, void(*fp) (bool, std::string&));
+    static void startConnect(uv_tcp_t* socket, std::string _ip, int _port, void(*fp) (bool, std::string&));
 //    void startConnect();
    
 };

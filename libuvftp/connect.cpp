@@ -13,7 +13,7 @@
 
 void(*connect::callback) (bool success, std::string &response) = NULL;
 
-void alloc_buffer(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
+void alloc_buffer_c(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
     buf->base = (char*)malloc(suggested_size);
     buf->len = suggested_size;
 }
@@ -35,8 +35,13 @@ void connect::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf) {
     strncpy(data, buf->base, nread);
     std::string str(data);
     
-    callback(true, str);
+    if(callback!= nullptr)
+    {
+        callback(true, str);
+        callback = nullptr;
+    }
     
+    uv_read_stop(client);
     free(data);
     free(buf->base);
 }
@@ -50,15 +55,14 @@ void connect::on_connect(uv_connect_t* req, int status)
     }
     else
     {
-        uv_read_start((uv_stream_t*) req->handle, alloc_buffer, on_read);
+        uv_read_start((uv_stream_t*) req->handle, alloc_buffer_c, on_read);
     }
 }
 
-void connect::startConnect(std::string _ip, int _port, void(*fp) (bool, std::string&))
+void connect::startConnect(uv_tcp_t* socket, std::string _ip, int _port, void(*fp) (bool, std::string&))
 {
     callback = fp;
     
-    uv_tcp_t* socket = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
     uv_tcp_init(uv_default_loop(), socket);
     
     uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
@@ -70,6 +74,7 @@ void connect::startConnect(std::string _ip, int _port, void(*fp) (bool, std::str
     //uv_tcp_connect(<#uv_connect_t *req#>, <#uv_tcp_t *handle#>, <#const struct sockaddr *addr#>, <#uv_connect_cb cb#>)
     
     uv_tcp_connect(connect, socket, (const struct sockaddr*)&dest, on_connect );
+
 }
 
 

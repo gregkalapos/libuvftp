@@ -4,7 +4,8 @@
 #pragma comment(lib, "Iphlpapi.lib")
 
 
-#include "connect.h"
+#include "clientPi.h"
+#include "user.h"
 
 int couter;
 
@@ -17,8 +18,14 @@ int main() {
     
     std::string ret;
    
-    connect::startConnect("208.118.235.20", 21, [](bool b, std::string& c){
+
+    clientPi::connect("208.118.235.20", 21, [](bool b, std::string& c){
         std::cout << c;
+        
+        clientPi::executeUser([](bool b, std::string& c){
+            std::cout << c;
+        });
+      //  user::run();
     });
     
     uv_run(uv_default_loop(), UV_RUN_DEFAULT);
