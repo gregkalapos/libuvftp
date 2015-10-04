@@ -45,10 +45,10 @@ void user::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf)
     if(callback!= nullptr)
     {
         callback(true, str);
-        callback = nullptr;
+      //  callback = nullptr;
     }
     
-    uv_read_stop(client);
+    //uv_read_stop(client);
     free(data);
     free(buf->base);
 }

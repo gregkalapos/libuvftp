@@ -17,15 +17,12 @@ void cb(bool b)
 int main() {
     
     std::string ret;
-   
 
     clientPi::connect("208.118.235.20", 21, [](bool b, std::string& c){
-        std::cout << c;
-        
+        std::cout << c;        
         clientPi::executeUser([](bool b, std::string& c){
             std::cout << c;
         });
-      //  user::run();
     });
     
     uv_run(uv_default_loop(), UV_RUN_DEFAULT);
