@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>063C0DC8-F524-45CC-8297-4A419FA5D0BD</string>
+	<string>91330466-C1A3-4528-9C37-F17F6D995BA6</string>
 	<key>IDESourceControlProjectName</key>
 	<string>libuvftp</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/gregkalapos/libuvftp.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>mac/libuvftp/libuvftp.xcodeproj</string>
+	<string>libuvftp.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AB2044FBAFF1918E6C7804BB3BFE342EF7786D1B</key>
-		<string>../../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/gregkalapos/libuvftp.git</string>
