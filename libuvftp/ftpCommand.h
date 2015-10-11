@@ -24,10 +24,11 @@ class ftpCommand {
     
 protected:
     const std::string command;
+    static void on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf);
+    static bool(*finishReading)(std::string lineRead); //function pointer which decides whether there is something to read
     
 public:
-   // static virtual void run() = 0;
-    
+     static void(*stringReadCB) (bool success, std::string &response);
 };
 
 #endif

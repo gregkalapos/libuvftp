@@ -24,10 +24,7 @@ private:
     static void on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf);
     
 public:
-    //connect(): ip(_ip), port(_port){};
-    static void startConnect(uv_tcp_t* socket, std::string _ip, int _port, void(*fp) (bool, std::string&));
-//    void startConnect();
-   
+    static void startConnect(uv_tcp_t* socket, std::string _ip, int _port, void(*fp) (bool, std::string&));   
 };
 
 #endif

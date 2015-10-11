@@ -70,11 +70,8 @@ void connect::startConnect(uv_tcp_t* socket, std::string _ip, int _port, void(*f
     struct sockaddr_in dest;
     
     uv_ip4_addr(_ip.c_str(), _port, &dest);
-    
-    //uv_tcp_connect(<#uv_connect_t *req#>, <#uv_tcp_t *handle#>, <#const struct sockaddr *addr#>, <#uv_connect_cb cb#>)
-    
+   
     uv_tcp_connect(connect, socket, (const struct sockaddr*)&dest, on_connect );
-
 }
 
 

@@ -14,14 +14,10 @@
 class user: public ftpCommand {
     static char* chr;
     static void writeCb(uv_write_t* req, int status);
+    static bool isEndOfSuccessMsg(std::string text);
     
-    static void on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf);
-    
-    static void(*callback) (bool success, std::string &response);
 public:
-    
     static void run(uv_stream_t* socket, void(*fp)(bool, std::string&));
-    
 };
 
 #endif
