@@ -13,9 +13,10 @@
 
 class pasv: public ftpCommand {
     
+     static void writeCbPasv(uv_write_t* req, int status);
     
 public:
-    
+    static void run(uv_stream_t* socket, void(*fp)(bool, std::string&));
 };
 
 #endif

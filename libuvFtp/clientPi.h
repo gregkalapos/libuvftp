@@ -23,6 +23,7 @@ public:
     static void connect(std::string _ip, int _port, void(*fp) (bool, std::string&));
     static void execute(ftpCommand ftpCommand); //TODO: does this make sense?
     static void executeUser(void(*fp) (bool, std::string&));
+    static void executePasv(void(*fp) (bool, std::string&));
 };
 
 

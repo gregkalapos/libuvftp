@@ -22,6 +22,15 @@ int main() {
         std::cout << c;        
         clientPi::executeUser([](bool b, std::string& c){
             std::cout << c;
+        
+            if(c.find("Login successful") != std::string::npos)
+            {
+                
+            clientPi::executePasv([](bool b, std::string& c){
+               
+                std::cout << c;
+            });
+            };
         });
     });
     

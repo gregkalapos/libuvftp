@@ -11,6 +11,7 @@
 
 #include "clientPi.h"
 #include "user.h"
+#include "pasv.h"
 
 uv_tcp_t* clientPi::socket = NULL;
 
@@ -28,6 +29,11 @@ void clientPi::execute(ftpCommand ftpCommand)
 void clientPi::executeUser(void(*fp) (bool, std::string&))
 {
     user::run((uv_stream_s*)socket, fp);
+}
+
+void clientPi::executePasv(void(*fp) (bool, std::string&))
+{
+    pasv::run((uv_stream_s*)socket, fp);
 }
 
 #endif
