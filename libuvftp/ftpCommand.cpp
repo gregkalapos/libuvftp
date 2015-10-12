@@ -29,9 +29,10 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
     strncpy(data, buf->base, nread);
     std::string str(data);
     
+    auto tmp = stringReadCB;
+    
     if(stringReadCB!= nullptr)
     {
-        stringReadCB(true, str);
         
         if(finishReading!=nullptr && finishReading(str))
         {
@@ -44,4 +45,7 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
    
     free(data);
     free(buf->base);
+    
+    if(tmp != nullptr)
+        tmp(true, str);
 }
