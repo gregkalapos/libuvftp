@@ -14,21 +14,17 @@
 #include <iostream>
 
 
-
-//void alloc_buffer(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
-//    buf->base = (char*)malloc(suggested_size);
-//    buf->len = suggested_size;
-//}
-
 class ftpCommand {
     
 protected:
     const std::string command;
     static void on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf);
-    static bool(*finishReading)(std::string lineRead); //function pointer which decides whether there is something to read
-    
+    //function pointer which decides whether there is something to read
+    static bool(*finishReading)(std::string lineRead);
+    static void (*processResonse)(std::string response);
 public:
-     static void(*stringReadCB) (bool success, std::string &response);
+    //callback called when the operation is done and it has a result
+    static void(*stringReadCB) (bool success, std::string &response);
 };
 
 #endif

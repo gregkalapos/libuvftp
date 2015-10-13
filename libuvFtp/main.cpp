@@ -18,21 +18,25 @@ int main() {
     
     std::string ret;
 
-    clientPi::connect("208.118.235.20", 21, [](bool b, std::string& c){
-        std::cout << c;        
-        clientPi::executeUser([](bool b, std::string& c){
+    clientPi::connect("208.118.235.20", 21, [](bool succ, std::string& c){
+        if(succ)
+        {
             std::cout << c;
-        
-            if(c.find("Login successful") != std::string::npos)
-            {
+            clientPi::executeUser("anonymous", [](bool succ, std::string& c){
+                if(succ)
+                    std::cout << c;
                 
-            clientPi::executePasv([](bool b, std::string& c){
-               
-                std::cout << c;
+                    if(c.find("Login successful") != std::string::npos)
+                    {
+                        clientPi::executePasv([](bool succ, std::string& c){
+                            std::cout << c;
+                        });
+                    };
             });
-            };
-        });
+        }
     });
+    
+
     
     uv_run(uv_default_loop(), UV_RUN_DEFAULT);
     uv_loop_close(uv_default_loop());

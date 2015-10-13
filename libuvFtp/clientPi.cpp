@@ -13,27 +13,29 @@
 #include "user.h"
 #include "pasv.h"
 
-uv_tcp_t* clientPi::socket = NULL;
+uv_tcp_t* clientPi::controlConnSocket = nullptr;
+uv_tcp_t* clientPi::dataConnSocket = nullptr;
 
 void clientPi::connect(std::string _ip, int _port, void(*fp) (bool, std::string&))
 {
-    socket = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
-    connect::startConnect(socket, _ip, _port, fp);
+    controlConnSocket = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
+    connect::startConnect(controlConnSocket, _ip, _port, fp);
 }
 
-void clientPi::execute(ftpCommand ftpCommand)
-{
-    
-}
+//void clientPi::execute(ftpCommand ftpCommand)
+//{
+//    
+//}
 
-void clientPi::executeUser(void(*fp) (bool, std::string&))
+void clientPi::executeUser(std::string userName, void(*fp) (bool, std::string&))
 {
-    user::run((uv_stream_s*)socket, fp);
+    user::run((uv_stream_s*)controlConnSocket, fp, userName);
 }
 
 void clientPi::executePasv(void(*fp) (bool, std::string&))
 {
-    pasv::run((uv_stream_s*)socket, fp);
+    dataConnSocket = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
+    pasv::run((uv_stream_s*)controlConnSocket, fp, dataConnSocket);
 }
 
 #endif

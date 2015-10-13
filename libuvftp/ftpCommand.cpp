@@ -10,6 +10,7 @@
 
 void(*ftpCommand::stringReadCB) (bool success, std::string &response) = nullptr;
 bool(*ftpCommand::finishReading)(std::string lineRead) = nullptr;
+void (*ftpCommand::processResonse)(std::string response) = nullptr;
 
 void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf)
 {
@@ -45,6 +46,11 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
    
     free(data);
     free(buf->base);
+    
+    if(processResonse!=nullptr)
+    {
+        processResonse(str);
+    }
     
     if(tmp != nullptr)
         tmp(true, str);
