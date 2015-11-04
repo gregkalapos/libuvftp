@@ -33,8 +33,7 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
     auto tmp = stringReadCB;
     
     if(stringReadCB!= nullptr)
-    {
-        
+    {        
         if(finishReading!=nullptr && finishReading(str))
         {
             stringReadCB = nullptr;

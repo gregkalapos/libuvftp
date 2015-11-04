@@ -29,6 +29,13 @@ void pasv::onConnectToDataChannel(uv_connect_t* req, int status)
         //callback(false, str);
         //TODO: report error
     }
+
+	uv_read_stop((uv_stream_s*)dataChannelSocket);
+}
+
+bool pasv::isEndOfSuccessMsg(std::string text)
+{
+	return true;
 }
 
 void pasv::writeCbPasv(uv_write_t* req, int status)
@@ -40,6 +47,7 @@ void pasv::run(uv_stream_t* socket, void(*fp)(bool, std::string&), uv_tcp_t* _da
 {
     ftpCommand::stringReadCB = fp;
     ftpCommand::processResonse = connectToDataChannel;
+	ftpCommand::finishReading = isEndOfSuccessMsg;
     dataChannelSocket = _dataChannelSocket;
     
     uv_write_t *req = (uv_write_t *) malloc(sizeof(uv_write_t));

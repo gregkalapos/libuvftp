@@ -12,6 +12,7 @@
 #include "clientPi.h"
 #include "user.h"
 #include "pasv.h"
+#include "list.h"
 
 uv_tcp_t* clientPi::controlConnSocket = nullptr;
 uv_tcp_t* clientPi::dataConnSocket = nullptr;
@@ -36,6 +37,11 @@ void clientPi::executePasv(void(*fp) (bool, std::string&))
 {
     dataConnSocket = (uv_tcp_t*)malloc(sizeof(uv_tcp_t));
     pasv::run((uv_stream_s*)controlConnSocket, fp, dataConnSocket);
+}
+
+void clientPi::executeList(void(*fp) (bool, std::string&))
+{
+
 }
 
 #endif
