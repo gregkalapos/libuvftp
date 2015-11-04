@@ -30,6 +30,15 @@ int main() {
                     {
                         clientPi::executePasv([](bool succ, std::string& c){
                             std::cout << c;
+                            
+                            clientPi::executeList([](bool succ, std::string &c){
+                                
+                                std::cout << c;
+                                //control channel cb
+                            
+                            }, [](bool succ, std::string& c){
+                                
+                            });
                         });
                     };
             });

@@ -19,6 +19,7 @@
 		21B944911BC1641F00A223EA /* clientPi.h in Sources */ = {isa = PBXBuildFile; fileRef = 21B9448F1BC1638500A223EA /* clientPi.h */; };
 		21B944921BC1641F00A223EA /* clientPi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B944901BC1639200A223EA /* clientPi.cpp */; };
 		21C51AF21BC023E0007D37C1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C51AF11BC023E0007D37C1 /* main.cpp */; };
+		21F965861BEA9CC900B96E73 /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F965841BEA9CC900B96E73 /* list.cpp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,8 @@
 		21B944901BC1639200A223EA /* clientPi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = clientPi.cpp; sourceTree = "<group>"; };
 		21C51AEE1BC023E0007D37C1 /* libuvftp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libuvftp; sourceTree = BUILT_PRODUCTS_DIR; };
 		21C51AF11BC023E0007D37C1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		21F965841BEA9CC900B96E73 /* list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list.cpp; sourceTree = "<group>"; };
+		21F965851BEA9CC900B96E73 /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 		21C51AF01BC023E0007D37C1 /* libuvftp */ = {
 			isa = PBXGroup;
 			children = (
+				21F965841BEA9CC900B96E73 /* list.cpp */,
+				21F965851BEA9CC900B96E73 /* list.h */,
 				21C51AF11BC023E0007D37C1 /* main.cpp */,
 				2106AC7E1BC02EBD00BCC5D4 /* ftpCommand.h */,
 				2106AC7F1BC02ECC00BCC5D4 /* ftpCommand.cpp */,
@@ -157,6 +162,7 @@
 				21B9448B1BC12B2100A223EA /* pasv.h in Sources */,
 				21B9448C1BC12B2100A223EA /* pasv.cpp in Sources */,
 				21B9448D1BC12B2100A223EA /* user.h in Sources */,
+				21F965861BEA9CC900B96E73 /* list.cpp in Sources */,
 				21B9448E1BC12B2100A223EA /* user.cpp in Sources */,
 				214CDA851BC036D800B55930 /* ftpCommand.h in Sources */,
 				214CDA861BC036D800B55930 /* ftpCommand.cpp in Sources */,

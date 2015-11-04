@@ -26,7 +26,7 @@ public:
     //static void execute(ftpCommand ftpCommand); //TODO: does this make sense?
     static void executeUser(std::string userName, void(*fp) (bool, std::string&));
     static void executePasv(void(*fp) (bool, std::string&));
-	static void executeList(void(*fp) (bool, std::string&));
+	static void executeList(void(*controlChannelCb) (bool, std::string&), void(*dataChannelCb) (bool, std::string&));
 };
 
 

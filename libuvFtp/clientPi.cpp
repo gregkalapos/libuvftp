@@ -39,9 +39,9 @@ void clientPi::executePasv(void(*fp) (bool, std::string&))
     pasv::run((uv_stream_s*)controlConnSocket, fp, dataConnSocket);
 }
 
-void clientPi::executeList(void(*fp) (bool, std::string&))
+void clientPi::executeList(void(*controlChannelCb) (bool, std::string&), void(*dataChannelCb) (bool, std::string&))
 {
-
+    list::run((uv_stream_s*)controlConnSocket, controlChannelCb, dataConnSocket, dataChannelCb);
 }
 
 #endif
