@@ -17,6 +17,14 @@
 
 char* user::chr = new char[256];
 
+std::string user::result = "";
+
+void user::processPartialResult(std::string partialResult)
+{
+    result += partialResult;
+}
+
+
 bool user::isEndOfSuccessMsg(std::string text)
 {
    // std::replace(text.begin(), text.end(), ' ', '');
@@ -36,7 +44,7 @@ void user::writeCb(uv_write_t* req, int status)
 
 void user::run(uv_stream_t* socket, void(*fp)(bool, std::string&), std::string userName)
 {
-    ftpCommand::stringReadCB = fp;
+    ftpCommand::ReadFinishedCB = fp;
     ftpCommand::finishReading = isEndOfSuccessMsg;
     
     uv_write_t *req = (uv_write_t *) malloc(sizeof(uv_write_t));

@@ -15,6 +15,9 @@ class user: public ftpCommand {
     static char* chr;
     static void writeCb(uv_write_t* req, int status);
     static bool isEndOfSuccessMsg(std::string text);
+    static std::string result;
+    
+    static void processPartialResult(std::string);
     
 public:
     static void run(uv_stream_t* socket, void(*fp)(bool, std::string&), std::string userName);

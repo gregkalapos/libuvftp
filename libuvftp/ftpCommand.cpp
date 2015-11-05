@@ -8,7 +8,7 @@
 
 #include "ftpCommand.h"
 
-void(*ftpCommand::stringReadCB) (bool success, std::string &response) = nullptr;
+void(*ftpCommand::ReadFinishedCB) (bool success, std::string &response) = nullptr;
 bool(*ftpCommand::finishReading)(std::string lineRead) = nullptr;
 void (*ftpCommand::processResonse)(std::string response) = nullptr;
 
@@ -17,7 +17,7 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
     if (nread < 0) {
         if (nread != UV_EOF){
             std::string str("Read error %s\n");
-            stringReadCB(false, str);
+            ReadFinishedCB(false, str);
         }
         //fprintf(stderr, , uv_err_name(nread));
         uv_close((uv_handle_t*) client, NULL);
@@ -29,18 +29,25 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
     data[nread] = '\0';
     strncpy(data, buf->base, nread);
     std::string str(data);
-    
-    auto tmp = stringReadCB;
-    
-    if(stringReadCB!= nullptr)
-    {        
-        if(finishReading!=nullptr && finishReading(str))
-        {
-            stringReadCB = nullptr;
-            finishReading = nullptr;
-            uv_read_stop(client);
-        }
         
+    auto tmp = ReadFinishedCB;
+    auto isReadingDone = true;
+    
+    
+    //TODO this can be much cleaner!
+    if(ReadFinishedCB!= nullptr)
+    {
+        if(finishReading!=nullptr)
+        {
+            if(finishReading(str))
+            {
+                ReadFinishedCB = nullptr;
+                finishReading = nullptr;
+                uv_read_stop(client);
+            }
+            else
+                isReadingDone = false;
+        }
     }
    
     free(data);
@@ -51,6 +58,9 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
         processResonse(str);
     }
     
-    if(tmp != nullptr)
+    if(tmp != nullptr && isReadingDone)
+    {
         tmp(true, str);
+        processResonse = nullptr;
+    }
 }

@@ -21,10 +21,11 @@ protected:
     static void on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf);
     //function pointer which decides whether there is something to read
     static bool(*finishReading)(std::string lineRead);
+    //Called when the read cb is called, it is used e.g. to store partial results
     static void (*processResonse)(std::string response);
 public:
     //callback called when the operation is done and it has a result
-    static void(*stringReadCB) (bool success, std::string &response);
+    static void(*ReadFinishedCB) (bool success, std::string &response);
 };
 
 #endif

@@ -45,7 +45,7 @@ void pasv::writeCbPasv(uv_write_t* req, int status)
 
 void pasv::run(uv_stream_t* socket, void(*fp)(bool, std::string&), uv_tcp_t* _dataChannelSocket)
 {
-    ftpCommand::stringReadCB = fp;
+    ftpCommand::ReadFinishedCB = fp;
     ftpCommand::processResonse = connectToDataChannel;
 	ftpCommand::finishReading = isEndOfSuccessMsg;
     dataChannelSocket = _dataChannelSocket;
@@ -84,8 +84,7 @@ void pasv::connectToDataChannel(std::string response)
             uv_ip4_addr(ip.c_str(), port, &dest);            
             uv_tcp_connect(connect, dataChannelSocket, (const struct sockaddr*)&dest, onConnectToDataChannel);
         }
-    }
-    
+    }    
 }
 
 #endif

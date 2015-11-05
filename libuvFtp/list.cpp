@@ -26,11 +26,11 @@ void list::writeListPasvCb(uv_write_t* req, int status)
 
 void list::run(uv_stream_t* controlChannelSocket, void(*controlChannelReturn)(bool, std::string&), uv_tcp_t* _dataChannelSocket, void(*dataChannelReturn)(bool, std::string&))
 {
-	ftpCommand::stringReadCB = controlChannelReturn;
+	ftpCommand::ReadFinishedCB = controlChannelReturn;
 	
 	//ftpCommand::processResonse = connectToDataChannel;
-	
 	//ftpCommand::finishReading = isEndOfSuccessMsg;
+    
 	controlChannel = controlChannelSocket;
 	dataChannel = _dataChannelSocket;
 

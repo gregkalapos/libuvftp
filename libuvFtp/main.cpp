@@ -7,13 +7,6 @@
 #include "clientPi.h"
 #include "user.h"
 
-int couter;
-
-void cb(bool b)
-{    
-    std::cout << b;
-}
-
 int main() {
     
     std::string ret;
@@ -24,10 +17,7 @@ int main() {
             std::cout << c;
             clientPi::executeUser("anonymous", [](bool succ, std::string& c){
                 if(succ)
-                    std::cout << c;
-                
-                    if(c.find("Login successful") != std::string::npos)
-                    {
+                    std::cout << c; //after this expect: 230 Login successful.
                         clientPi::executePasv([](bool succ, std::string& c){
                             std::cout << c;
                             
@@ -37,15 +27,12 @@ int main() {
                                 //control channel cb
                             
                             }, [](bool succ, std::string& c){
-                                
+                                //data channel cb
                             });
                         });
-                    };
             });
         }
-    });
-    
-
+    });   
     
     uv_run(uv_default_loop(), UV_RUN_DEFAULT);
     uv_loop_close(uv_default_loop());
