@@ -13,7 +13,7 @@
 
 class user: public ftpCommand {
     static char* chr;
-    static void writeCb(uv_write_t* req, int status);
+   
     static bool isEndOfSuccessMsg(std::string text);
     static std::string result;
     

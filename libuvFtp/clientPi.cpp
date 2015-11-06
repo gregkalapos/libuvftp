@@ -13,6 +13,9 @@
 #include "user.h"
 #include "pasv.h"
 #include "list.h"
+#include "pwd.h"
+#include "type.h"
+#include "Pass.h"
 
 uv_tcp_t* clientPi::controlConnSocket = nullptr;
 uv_tcp_t* clientPi::dataConnSocket = nullptr;
@@ -42,6 +45,22 @@ void clientPi::executePasv(void(*fp) (bool, std::string&))
 void clientPi::executeList(void(*controlChannelCb) (bool, std::string&), void(*dataChannelCb) (bool, std::string&))
 {
     list::run((uv_stream_s*)controlConnSocket, controlChannelCb, dataConnSocket, dataChannelCb);
+}
+
+void clientPi::executePwd(void(*fp) (bool, std::string&))
+{
+	pwd::run((uv_stream_s*)controlConnSocket, fp);
+}
+
+
+void clientPi::executeType(std::string type, void(*fp) (bool, std::string&))
+{
+	type::run(type, (uv_stream_s*)controlConnSocket, fp);
+}
+
+void clientPi::executePass(std::string password, void(*fp) (bool, std::string&))
+{
+	Pass::run(password, (uv_stream_s*)controlConnSocket, fp);
 }
 
 #endif

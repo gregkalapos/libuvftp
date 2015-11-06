@@ -12,6 +12,13 @@ void(*ftpCommand::ReadFinishedCB) (bool success, std::string &response) = nullpt
 bool(*ftpCommand::finishReading)(std::string lineRead) = nullptr;
 void (*ftpCommand::processResonse)(std::string response) = nullptr;
 
+
+void alloc_buffer_l(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
+	buf->base = (char*)malloc(suggested_size);
+	buf->len = suggested_size;
+}
+
+
 void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf)
 {
     if (nread < 0) {
@@ -60,7 +67,25 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
     
     if(tmp != nullptr && isReadingDone)
     {
-        tmp(true, str);
-        processResonse = nullptr;
+		processResonse = nullptr;
+        tmp(true, str);        
     }
+}
+
+
+void ftpCommand::writeCb(uv_write_t* req, int status)
+{
+	uv_read_start(req->handle, alloc_buffer_l, on_read);
+}
+
+void ftpCommand::InitWriteRead(uv_stream_t* socket, std::string command)
+{	
+	uv_write_t *req = (uv_write_t *)malloc(sizeof(uv_write_t));
+	char* cstr = new char[command.length() + 1];
+	strcpy(cstr, command.c_str());
+
+	uv_buf_t wrbuf = uv_buf_init(cstr, command.length() );
+
+	uv_write(req, socket, &wrbuf, 1, writeCb);
+	delete[] cstr;
 }

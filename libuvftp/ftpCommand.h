@@ -23,9 +23,13 @@ protected:
     static bool(*finishReading)(std::string lineRead);
     //Called when the read cb is called, it is used e.g. to store partial results
     static void (*processResonse)(std::string response);
+
+	static void writeCb(uv_write_t* req, int status);
 public:
     //callback called when the operation is done and it has a result
     static void(*ReadFinishedCB) (bool success, std::string &response);
+
+	static void InitWriteRead(uv_stream_t* socket, std::string command);
 };
 
 #endif

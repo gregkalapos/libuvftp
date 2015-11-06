@@ -13,7 +13,6 @@
 
 class pasv: public ftpCommand {
     
-    static void writeCbPasv(uv_write_t* req, int status);
     static void connectToDataChannel(std::string response);
     static uv_tcp_t* dataChannelSocket;
     static void onConnectToDataChannel(uv_connect_t* req, int status);

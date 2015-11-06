@@ -125,15 +125,23 @@
     <ClCompile Include="clientPi.cpp" />
     <ClCompile Include="connect.cpp" />
     <ClCompile Include="ftpCommand.cpp" />
+    <ClCompile Include="list.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pass.cpp" />
     <ClCompile Include="pasv.cpp" />
+    <ClCompile Include="pwd.cpp" />
+    <ClCompile Include="type.cpp" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clientPi.h" />
     <ClInclude Include="connect.h" />
     <ClInclude Include="ftpCommand.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="Pass.h" />
     <ClInclude Include="pasv.h" />
+    <ClInclude Include="pwd.h" />
+    <ClInclude Include="type.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

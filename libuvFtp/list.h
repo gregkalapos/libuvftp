@@ -9,8 +9,6 @@ private:
 	static uv_stream_t* controlChannel;
 	static uv_tcp_t* dataChannel;
 
-	static void writeListPasvCb(uv_write_t* req, int status);
-
 public:
 	list();
 	~list();
