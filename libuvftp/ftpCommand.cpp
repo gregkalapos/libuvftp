@@ -12,12 +12,15 @@ void(*ftpCommand::ReadFinishedCB) (bool success, std::string &response) = nullpt
 bool(*ftpCommand::finishReading)(std::string lineRead) = nullptr;
 void (*ftpCommand::processResonse)(std::string response) = nullptr;
 
+void ftpCommand::ConnectAndReadFromStream(uv_stream_t* socket)
+{
+    
+}
 
 void alloc_buffer_l(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
 	buf->base = (char*)malloc(suggested_size);
 	buf->len = suggested_size;
 }
-
 
 void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf)
 {
