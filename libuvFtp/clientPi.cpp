@@ -13,7 +13,7 @@
 #include "user.h"
 #include "pasv.h"
 #include "list.h"
-#include "pwd.h"
+#include "pwdCom.h"
 #include "type.h"
 #include "Pass.h"
 

@@ -1,5 +1,5 @@
-#ifndef libuvftp_pwd_h
-#define libuvftp_pwd_h
+#ifndef libuvftp_pwdCom_h
+#define libuvftp_pwdCom_h
 
 #include "ftpCommand.h"
 

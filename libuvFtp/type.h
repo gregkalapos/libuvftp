@@ -1,4 +1,6 @@
-#pragma once
+#ifndef libuvftp_type_h
+#define libuvftp_type_h
+
 #include "ftpCommand.h"
 
 
@@ -12,3 +14,4 @@ public:
 	~type();
 };
 
+#endif

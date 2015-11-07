@@ -10,7 +10,6 @@
 #define libuvftp_clientPi_h
 
 #include <string>
-#include "uv.h"
 #include <iostream>
 #include "connect.h"
 #include "ftpCommand.h"

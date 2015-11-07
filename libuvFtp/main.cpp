@@ -11,16 +11,16 @@ int main() {
     
     std::string ret;
 
-    //clientPi::connect("208.118.235.20", 21, [](bool succ, std::string& c){
-	clientPi::connect("127.0.0.1", 21, [](bool succ, std::string& c) {
+    clientPi::connect("208.118.235.20", 21, [](bool succ, std::string& c){
+	//clientPi::connect("127.0.0.1", 21, [](bool succ, std::string& c) {
 		if (succ)
 		{
 			std::cout << c;
 			clientPi::executeUser("anonymous", [](bool succ, std::string& c) {
 				if (succ)
 					std::cout << c; //after this expect: 230 Login successful.
-				clientPi::executePass("anonymus", [](bool b, std::string& c) {
-					std::cout << c;
+				//clientPi::executePass("anonymus", [](bool b, std::string& c) {
+				//	std::cout << c;
 
 					clientPi::executePasv([](bool succ, std::string& c) {
 						std::cout << c;
@@ -39,7 +39,7 @@ int main() {
 							});
 						});
 					});
-				});
+				//});
 			});
 		}
 	});   

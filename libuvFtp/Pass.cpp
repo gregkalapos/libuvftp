@@ -1,6 +1,8 @@
+#ifndef libuvftp_pass_cpp
+#define libuvftp_pass_cpp
+
+
 #include "Pass.h"
-
-
 
 Pass::Pass()
 {
@@ -19,3 +21,5 @@ void Pass::run(std::string password, uv_stream_t* socket, void(*fp)(bool, std::s
 	ftpCommand::ReadFinishedCB = fp;
 	ftpCommand::InitWriteRead(socket, cmd);
 }
+
+#endif

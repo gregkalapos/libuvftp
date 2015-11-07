@@ -1,4 +1,7 @@
-#pragma once
+#ifndef libuvftp_pass_h
+#define libuvftp_pass_h
+
+
 #include "ftpCommand.h"
 class Pass :
 	public ftpCommand
@@ -10,3 +13,4 @@ public:
 	~Pass();
 };
 
+#endif

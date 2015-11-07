@@ -1,3 +1,6 @@
+#ifndef libuvftp_list_cpp
+#define libuvftp_list_cpp
+
 #include "list.h"
 
 
@@ -25,3 +28,5 @@ void list::run(uv_stream_t* controlChannelSocket, void(*controlChannelReturn)(bo
 	
 	InitWriteRead(controlChannel, commandStr);    
 }
+
+#endif

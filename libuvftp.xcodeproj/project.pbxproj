@@ -20,6 +20,13 @@
 		21B944921BC1641F00A223EA /* clientPi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B944901BC1639200A223EA /* clientPi.cpp */; };
 		21C51AF21BC023E0007D37C1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C51AF11BC023E0007D37C1 /* main.cpp */; };
 		21F965861BEA9CC900B96E73 /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F965841BEA9CC900B96E73 /* list.cpp */; settings = {ASSET_TAGS = (); }; };
+		21F965891BED6B6F00B96E73 /* Pass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F965871BED6B6F00B96E73 /* Pass.cpp */; settings = {ASSET_TAGS = (); }; };
+		21F9658E1BED6B8A00B96E73 /* pwdCom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F9658A1BED6B8A00B96E73 /* pwdCom.cpp */; settings = {ASSET_TAGS = (); }; };
+		21F9658F1BED6B8A00B96E73 /* type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21F9658C1BED6B8A00B96E73 /* type.cpp */; settings = {ASSET_TAGS = (); }; };
+		21F965901BED6CDA00B96E73 /* pwdCom.h in Sources */ = {isa = PBXBuildFile; fileRef = 21F9658B1BED6B8A00B96E73 /* pwdCom.h */; };
+		21F965911BED6CDA00B96E73 /* type.h in Sources */ = {isa = PBXBuildFile; fileRef = 21F9658D1BED6B8A00B96E73 /* type.h */; };
+		21F965921BED6CDA00B96E73 /* Pass.h in Sources */ = {isa = PBXBuildFile; fileRef = 21F965881BED6B6F00B96E73 /* Pass.h */; };
+		21F965931BED6CDA00B96E73 /* list.h in Sources */ = {isa = PBXBuildFile; fileRef = 21F965851BEA9CC900B96E73 /* list.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +57,12 @@
 		21C51AF11BC023E0007D37C1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		21F965841BEA9CC900B96E73 /* list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list.cpp; sourceTree = "<group>"; };
 		21F965851BEA9CC900B96E73 /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
+		21F965871BED6B6F00B96E73 /* Pass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pass.cpp; sourceTree = "<group>"; };
+		21F965881BED6B6F00B96E73 /* Pass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pass.h; sourceTree = "<group>"; };
+		21F9658A1BED6B8A00B96E73 /* pwdCom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pwdCom.cpp; sourceTree = "<group>"; };
+		21F9658B1BED6B8A00B96E73 /* pwdCom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pwdCom.h; sourceTree = "<group>"; };
+		21F9658C1BED6B8A00B96E73 /* type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = type.cpp; sourceTree = "<group>"; };
+		21F9658D1BED6B8A00B96E73 /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +97,12 @@
 		21C51AF01BC023E0007D37C1 /* libuvftp */ = {
 			isa = PBXGroup;
 			children = (
+				21F9658A1BED6B8A00B96E73 /* pwdCom.cpp */,
+				21F9658B1BED6B8A00B96E73 /* pwdCom.h */,
+				21F9658C1BED6B8A00B96E73 /* type.cpp */,
+				21F9658D1BED6B8A00B96E73 /* type.h */,
+				21F965871BED6B6F00B96E73 /* Pass.cpp */,
+				21F965881BED6B6F00B96E73 /* Pass.h */,
 				21F965841BEA9CC900B96E73 /* list.cpp */,
 				21F965851BEA9CC900B96E73 /* list.h */,
 				21C51AF11BC023E0007D37C1 /* main.cpp */,
@@ -157,13 +176,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F965911BED6CDA00B96E73 /* type.h in Sources */,
+				21F965921BED6CDA00B96E73 /* Pass.h in Sources */,
+				21F965931BED6CDA00B96E73 /* list.h in Sources */,
 				21B944911BC1641F00A223EA /* clientPi.h in Sources */,
+				21F965901BED6CDA00B96E73 /* pwdCom.h in Sources */,
 				21B944921BC1641F00A223EA /* clientPi.cpp in Sources */,
 				21B9448B1BC12B2100A223EA /* pasv.h in Sources */,
 				21B9448C1BC12B2100A223EA /* pasv.cpp in Sources */,
 				21B9448D1BC12B2100A223EA /* user.h in Sources */,
+				21F9658E1BED6B8A00B96E73 /* pwdCom.cpp in Sources */,
 				21F965861BEA9CC900B96E73 /* list.cpp in Sources */,
 				21B9448E1BC12B2100A223EA /* user.cpp in Sources */,
+				21F9658F1BED6B8A00B96E73 /* type.cpp in Sources */,
+				21F965891BED6B6F00B96E73 /* Pass.cpp in Sources */,
 				214CDA851BC036D800B55930 /* ftpCommand.h in Sources */,
 				214CDA861BC036D800B55930 /* ftpCommand.cpp in Sources */,
 				214CDA871BC036D800B55930 /* connect.h in Sources */,
