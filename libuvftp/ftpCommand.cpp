@@ -36,32 +36,11 @@ void ftpCommand::on_DataRead(uv_stream_t *client, ssize_t nread, const uv_buf_t 
     std::string str(data);
 
     std::cout << str;
-     uv_read_stop(client);
+    uv_read_stop(client);
 }
-
-//void ftpCommand::on_dataChannelConnect(uv_connect_t* req, int status)
-//{
-//    uv_read_start(req->handle, alloc_buffer_l, on_DataRead);
-//}
 
 void ftpCommand::ConnectAndReadFromStream(passiveDataChannelConnection& socket)
 {
-    //    uv_tcp_init(uv_default_loop(), socket);
-    //    uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
-    //    struct sockaddr_in dest;
-    //
-    //    uv_ip4_addr(ip.c_str(), port, &dest);
-    //    uv_tcp_connect(connect, dataChannelSocket, (const struct sockaddr*)&dest, onConnectToDataChannel);
-    
-    
-    //uv_read_start(socket->connect_req->handle, alloc_buffer_l, on_DataRead);
-    
-//    uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
-//    struct sockaddr_in dest;
-//   
-//    uv_ip4_addr(socket.serverIp.c_str(), socket.portNr, &dest);
-//    uv_tcp_connect(connect, socket.dataConnSocket, (const struct sockaddr*)&dest, on_dataChannelConnect );
-    
      uv_read_start(socket.connection->handle, alloc_buffer_l, on_DataRead);
 }
 
