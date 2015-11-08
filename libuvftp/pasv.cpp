@@ -14,11 +14,12 @@
 #include <sstream>
 #include <iostream>
 
-uv_tcp_t* pasv::dataChannelSocket = nullptr;
+passiveDataChannelConnection* pasv::dataChannelSocket = nullptr;
 
 
 void pasv::onConnectToDataChannel(uv_connect_t* req, int status)
 {
+    dataChannelSocket->connection = req;
 	if (status < 0)
 	{
 		std::string str = "error on connect";
@@ -34,12 +35,12 @@ bool pasv::isEndOfSuccessMsg(std::string text)
 	return true;
 }
 
-void pasv::run(uv_stream_t* socket, void(*fp)(bool, std::string&), uv_tcp_t* _dataChannelSocket)
+void pasv::run(uv_stream_t* socket, void(*fp)(bool, std::string&), passiveDataChannelConnection& _dataChannel)
 {
 	ftpCommand::ReadFinishedCB = fp;
 	ftpCommand::processResonse = connectToDataChannel;
 	ftpCommand::finishReading = isEndOfSuccessMsg;
-	dataChannelSocket = _dataChannelSocket;
+	dataChannelSocket = &_dataChannel;
 
 	std::string cmd = "PASV \n";
 	InitWriteRead(socket, cmd);
@@ -68,13 +69,16 @@ void pasv::connectToDataChannel(std::string response)
 		{
 			auto ip = strings[0] + "." + strings[1] + "." + strings[2] + "." + strings[3];
 			int port = 256 * std::stoi(strings[4]) + std::stoi(strings[5]);
+            
+            dataChannelSocket->serverIp = ip;
+            dataChannelSocket->portNr = port;
 
-			uv_tcp_init(uv_default_loop(), dataChannelSocket);
+			uv_tcp_init(uv_default_loop(), dataChannelSocket->dataConnSocket);
 			uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
 			struct sockaddr_in dest;
 			uv_ip4_addr(ip.c_str(), port, &dest);
-			uv_tcp_connect(connect, dataChannelSocket, (const struct sockaddr*)&dest, onConnectToDataChannel);
-		}
+			uv_tcp_connect(connect, dataChannelSocket->dataConnSocket, (const struct sockaddr*)&dest, onConnectToDataChannel);
+        }
 	}
 }
 

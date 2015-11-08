@@ -12,14 +12,56 @@ void(*ftpCommand::ReadFinishedCB) (bool success, std::string &response) = nullpt
 bool(*ftpCommand::finishReading)(std::string lineRead) = nullptr;
 void (*ftpCommand::processResonse)(std::string response) = nullptr;
 
-void ftpCommand::ConnectAndReadFromStream(uv_stream_t* socket)
-{
-    
-}
 
 void alloc_buffer_l(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
 	buf->base = (char*)malloc(suggested_size);
 	buf->len = suggested_size;
+}
+
+void ftpCommand::on_DataRead(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf)
+{
+    if (nread < 0) {
+        if (nread != UV_EOF){
+            std::string str("Read error %s\n");
+        }
+        //fprintf(stderr, , uv_err_name(nread));
+        uv_close((uv_handle_t*) client, NULL);
+        free(client);
+        return;
+    }
+    
+    char *data = (char*) malloc(sizeof(char) * (nread+1));
+    data[nread] = '\0';
+    strncpy(data, buf->base, nread);
+    std::string str(data);
+
+    std::cout << str;
+}
+
+//void ftpCommand::on_dataChannelConnect(uv_connect_t* req, int status)
+//{
+//    uv_read_start(req->handle, alloc_buffer_l, on_DataRead);
+//}
+
+void ftpCommand::ConnectAndReadFromStream(passiveDataChannelConnection& socket)
+{
+    //    uv_tcp_init(uv_default_loop(), socket);
+    //    uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
+    //    struct sockaddr_in dest;
+    //
+    //    uv_ip4_addr(ip.c_str(), port, &dest);
+    //    uv_tcp_connect(connect, dataChannelSocket, (const struct sockaddr*)&dest, onConnectToDataChannel);
+    
+    
+    //uv_read_start(socket->connect_req->handle, alloc_buffer_l, on_DataRead);
+    
+//    uv_connect_t* connect = (uv_connect_t*)malloc(sizeof(uv_connect_t));
+//    struct sockaddr_in dest;
+//   
+//    uv_ip4_addr(socket.serverIp.c_str(), socket.portNr, &dest);
+//    uv_tcp_connect(connect, socket.dataConnSocket, (const struct sockaddr*)&dest, on_dataChannelConnect );
+    
+     uv_read_start(socket.connection->handle, alloc_buffer_l, on_DataRead);
 }
 
 void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf)

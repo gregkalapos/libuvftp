@@ -14,10 +14,9 @@
 #include "connect.h"
 #include "ftpCommand.h"
 
-
 class clientPi {
     static uv_tcp_t* controlConnSocket;
-    static uv_tcp_t* dataConnSocket;
+    static passiveDataChannelConnection dataConnSocket;
     
 public:
     static void connect(std::string _ip, int _port, void(*fp) (bool, std::string&));

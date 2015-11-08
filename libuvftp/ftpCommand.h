@@ -13,6 +13,13 @@
 #include "uv.h"
 #include <iostream>
 
+struct passiveDataChannelConnection
+{
+    uv_tcp_t* dataConnSocket;
+    std::string serverIp;
+    int portNr;
+    uv_connect_t* connection;
+};
 
 class ftpCommand {
     
@@ -26,6 +33,9 @@ protected:
 
 	static void writeCb(uv_write_t* req, int status);
     
+    static void on_DataRead(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf);
+    static void on_dataChannelConnect(uv_connect_t* req, int status);
+    
 public:
     //callback called when the operation is done and it has a result
     static void(*ReadFinishedCB) (bool success, std::string &response);
@@ -33,7 +43,7 @@ public:
 	static void InitWriteRead(uv_stream_t* socket, std::string command);
     
     //connects to the socket and reads the data (mainly used for reading from the data channel)
-    static void ConnectAndReadFromStream(uv_stream_t* socket);
+    static void ConnectAndReadFromStream(passiveDataChannelConnection& dataChannel);
 };
 
 #endif
