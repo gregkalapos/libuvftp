@@ -36,6 +36,7 @@ void ftpCommand::on_DataRead(uv_stream_t *client, ssize_t nread, const uv_buf_t 
     std::string str(data);
 
     std::cout << str;
+     uv_read_stop(client);
 }
 
 //void ftpCommand::on_dataChannelConnect(uv_connect_t* req, int status)
