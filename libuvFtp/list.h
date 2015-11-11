@@ -18,6 +18,9 @@ private:
     static void processPartialresponse(std::string _partialResponse);
     
     static std::string partialResponse;
+
+	static bool isFinished;
+	static bool isDataChannelFinished(std::string line);
 public:
 	list();
 	~list();

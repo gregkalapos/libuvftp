@@ -13,6 +13,10 @@ bool(*ftpCommand::finishReading)(std::string lineRead) = nullptr;
 void (*ftpCommand::processResonse)(std::string response) = nullptr;
 
 
+
+void(*ftpCommand::ReadFinishedCB2) (bool success) = nullptr;
+bool(*ftpCommand::finishReading2)(std::string lineRead) = nullptr;
+
 void alloc_buffer_l(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
 	buf->base = (char*)malloc(suggested_size);
 	buf->len = suggested_size;
@@ -36,7 +40,16 @@ void ftpCommand::on_DataRead(uv_stream_t *client, ssize_t nread, const uv_buf_t 
     std::string str(data);
 
     std::cout << str;
-    uv_read_stop(client);
+   
+	if (finishReading2 != nullptr && finishReading2)
+	{
+		uv_read_stop(client);
+	}
+
+	if (ReadFinishedCB2 != nullptr)
+	{
+		ReadFinishedCB2(true);
+	}
 }
 
 void ftpCommand::ConnectAndReadFromStream(passiveDataChannelConnection& socket)
@@ -64,8 +77,7 @@ void ftpCommand::on_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf
         
     auto tmp = ReadFinishedCB;
     auto isReadingDone = true;
-    
-    
+        
     //TODO this can be much cleaner!
     if(ReadFinishedCB!= nullptr)
     {

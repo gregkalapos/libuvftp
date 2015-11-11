@@ -15,19 +15,29 @@ void(*list::controlChannelUserCallback)(bool, std::string&) = nullptr;
 
 std::string list::partialResponse = "";
 
+bool list::isFinished = false;
+
+
+bool list::isDataChannelFinished(std::string line)
+{
+	return isFinished;
+}
+
 void list::processPartialresponse(std::string _partialResponse)
 {
     partialResponse += _partialResponse;
     
     if(_partialResponse.find("150") != std::string::npos)
     {
+		ftpCommand::finishReading2 = isDataChannelFinished;
         ftpCommand::ConnectAndReadFromStream(*dataChannel);
     }
 }
 
 bool list::isCommandFinished(std::string response)
 {
-    return response.find("226") != std::string::npos;
+	isFinished = response.find("226") != std::string::npos;	 
+	return isFinished;	
 }
 
 void list::readingFinished(bool success, std::string& response)

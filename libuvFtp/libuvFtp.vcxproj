@@ -129,7 +129,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pass.cpp" />
     <ClCompile Include="pasv.cpp" />
-    <ClCompile Include="pwd.cpp" />
+    <ClCompile Include="pwdCom.cpp" />
     <ClCompile Include="type.cpp" />
     <ClCompile Include="user.cpp" />
   </ItemGroup>
@@ -140,7 +140,7 @@
     <ClInclude Include="list.h" />
     <ClInclude Include="Pass.h" />
     <ClInclude Include="pasv.h" />
-    <ClInclude Include="pwd.h" />
+    <ClInclude Include="pwdCom.h" />
     <ClInclude Include="type.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
